@@ -1,0 +1,5 @@
+backend-quasar/.env
+backend-quasar/dist
+
+backend-quasar/node_modules
+frontend-quasar/node_modules
