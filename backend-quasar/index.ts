@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { fire } from './firebase';
+import { fire } from './middlewares/Firebase';
 import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore/lite';
 import { Recipe } from './models/Recipe';
 
