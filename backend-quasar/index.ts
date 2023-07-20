@@ -3,12 +3,13 @@ import dotenv from 'dotenv';
 import { fire } from './middlewares/Firebase';
 import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore/lite';
 import { Recipe } from './models/Recipe';
+dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
 const db = getFirestore(fire)
 
-dotenv.config();
+
 
 app.get('/', async (req: Request, res: Response) => {
   const list = await getFoodList();
