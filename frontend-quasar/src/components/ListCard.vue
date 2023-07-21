@@ -11,8 +11,8 @@
             </q-item-section>
 
             <q-item-section>
-              <q-item-label>{{ card.name }}</q-item-label>
-              <q-item-label lines="2">{{ card.description }}</q-item-label>
+              <q-item-label>{{ card.title }}</q-item-label>
+              <q-item-label lines="2">{{ card.protein }}</q-item-label>
               <q-item-label>
                 <q-badge label="Badge 1" color="primary" />
                 <q-badge label="Badge 2" color="secondary" />
@@ -21,7 +21,11 @@
 
               <!-- Botão de edição -->
               <q-item-section side>
-                <q-btn flat icon="edit" class="q-ml-auto" @click="editCard(card)"/>
+                <q-btn flat icon="edit" class="q-ml-auto" @click="editCard(card)" />
+              </q-item-section>
+              <!-- Botão de edição -->
+              <q-item-section side>
+                <q-btn flat icon="delete" class="q-ml-auto" @click="editCard(card)" />
               </q-item-section>
             </q-item-section>
           </q-item>
@@ -29,13 +33,7 @@
       </div>
     </q-page-container>
 
-    <q-pagination
-      v-model="currentPage"
-      :min="1"
-      :max="totalPages"
-      @input="changePage"
-      class="pagination"
-    />
+    <q-pagination v-model="currentPage" :min="1" :max="totalPages" @input="changePage" class="pagination" />
   </q-page>
 </template>
 
@@ -43,43 +41,16 @@
 import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'ListCard',
+  props: {
+    cards: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
-      cards: [
-        {
-          image: 'https://cdn.quasar.dev/img/parallax2.jpg',
-          name: 'Card 1',
-          description: 'Description 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-        },
-        {
-          image: 'https://cdn.quasar.dev/img/parallax2.jpg',
-          name: 'Card 2',
-          description: 'Description 2 Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          image: 'https://cdn.quasar.dev/img/parallax2.jpg',
-          name: 'Card 2',
-          description: 'Description 2 Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          image: 'https://cdn.quasar.dev/img/parallax2.jpg',
-          name: 'Card 2',
-          description: 'Description 2 Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          image: 'https://cdn.quasar.dev/img/parallax2.jpg',
-          name: 'Card 2',
-          description: 'Description 2 Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          image: 'https://cdn.quasar.dev/img/parallax2.jpg',
-          name: 'Card 2',
-          description: 'Description 2 Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        }
-        // Add more cards here
-      ],
-      itemsPerPage: 4, // Number of cards per page
-      currentPage: 1 // Current page number
+      currentPage: 1,
+      itemsPerPage: 5
     }
   },
   computed: {
@@ -110,7 +81,8 @@ export default defineComponent({
 <style>
 /* Add your custom styles for the card here */
 .my-card-list {
-  max-height: calc(100vh - 100px); /* 100px for padding, you can adjust as needed */
+  max-height: calc(100vh - 100px);
+  /* 100px for padding, you can adjust as needed */
   overflow-y: auto;
 }
 

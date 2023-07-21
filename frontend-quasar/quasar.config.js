@@ -11,7 +11,7 @@
 const { configure } = require('quasar/wrappers')
 const path = require('path')
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     eslint: {
       // fix: true,
@@ -60,6 +60,11 @@ module.exports = configure(function (/* ctx */) {
       },
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
+      env: {
+        API_URL: ctx.dev
+          ? 'https://api.spoonacular.com/'
+          : 'https://api.spoonacular.com/'
+      },
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
