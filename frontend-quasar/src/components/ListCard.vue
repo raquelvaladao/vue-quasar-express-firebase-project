@@ -77,12 +77,14 @@ export default defineComponent({
     paginatedCards () {
       const start = (this.currentPage - 1) * this.itemsPerPage
       const end = start + this.itemsPerPage
+      console.log(this.currentPage)
       return this.cards.slice(start, end)
     }
   },
   methods: {
     // Change the current page when the pagination component emits the 'input' event
     changePage (page) {
+      console.log('this.currentPage')
       this.currentPage = page
       console.log(this.currentPage)
     },
