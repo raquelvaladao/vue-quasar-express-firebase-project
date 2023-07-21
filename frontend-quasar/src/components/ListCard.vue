@@ -40,7 +40,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'ListCard',
   data () {
     return {
       cards: [
@@ -102,7 +104,7 @@ export default {
       console.log('Edit card', card)
     }
   }
-}
+})
 </script>
 
 <style>
