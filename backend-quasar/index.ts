@@ -17,6 +17,8 @@ admin.initializeApp({
 
 const db = getFirestore();
 
+// GET detalhes do produto por ID
+// GET produtos considerando edições do banco
 
 app.get('/all', async (req, res) => {
   try {
@@ -40,7 +42,7 @@ app.get('/test', async (req: Request, res: Response) => {
     calories: 210,
     carbs: '43g',
     fat: '3g',
-    id: 90629,
+    id: 634927,
     image: 'https://spoonacular.com/recipeImages/90629-312x231.jpg',
     protein: '1g',
     title: 'Teste'
