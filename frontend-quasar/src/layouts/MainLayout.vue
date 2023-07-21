@@ -40,7 +40,9 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </q-page-container>
   </q-layout>
 </template>
@@ -54,7 +56,15 @@ const linksList = [
     title: 'Home',
     caption: '',
     icon: 'home',
-    link: { name: 'home' }
+    link: { name: 'home' },
+    route: '/home'
+  },
+  {
+    title: 'Favoritos',
+    caption: '',
+    icon: 'favorite',
+    link: { name: 'favorites' },
+    route: '/favorites'
   }
 ]
 
