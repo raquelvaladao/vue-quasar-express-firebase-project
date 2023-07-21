@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Receitas
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>SCC0961</div>
       </q-toolbar>
     </q-header>
 
