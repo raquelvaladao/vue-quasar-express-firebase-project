@@ -11,12 +11,13 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Receitas
-        </q-toolbar-title>
-
-        <div>SCC0961</div>
       </q-toolbar>
+
+      <div class="q-px-lg q-pt-xl q-mb-md">
+            <div class="text-h4">Receitas</div>
+            <div class="absolute-bottom-right q-mb-md q-px-sm">SCC0961</div>
+      </div>
+      <q-img src="src\assets\imgs\food.jpg" class="header-image absolute-top"/>
     </q-header>
 
     <q-drawer
@@ -57,7 +58,7 @@ const linksList = [
     caption: '',
     icon: 'home',
     link: { name: 'home' },
-    route: '/home'
+    route: '/'
   },
   {
     title: 'Favoritos',
@@ -88,3 +89,11 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss">
+  .header-image {
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+  }
+</style>
