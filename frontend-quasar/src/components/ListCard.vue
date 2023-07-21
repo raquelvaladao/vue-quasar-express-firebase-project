@@ -5,18 +5,18 @@
         <q-list bordered separator>
           <q-item v-for="(card, index) in paginatedCards" :key="index" class="q-mb-md">
             <q-item-section avatar>
-              <q-avatar>
+              <q-avatar class="img">
                 <img :src="card.image" alt="Card Image">
               </q-avatar>
             </q-item-section>
 
             <q-item-section>
               <q-item-label>{{ card.title }}</q-item-label>
-              <q-item-label lines="2">{{ card.protein }}</q-item-label>
+              <q-item-label lines="2">{{ card.calories }} calorias</q-item-label>
               <q-item-label>
-                <q-badge rounded label="55g prot" color="primary" />
-                <q-badge rounded label="35g carb" color="secondary" />
-                <q-badge rounded label="12g gord" color="accent" />
+                <q-badge rounded :label="'Proteinas: ' + card.protein" color="primary" />
+                <q-badge rounded :label="'Gorduras: ' + card.fat" color="secondary" />
+                <q-badge rounded :label="'Carboidratos: ' + card.carbs" color="accent" />
               </q-item-label>
 
               <!-- Nova div para envolver os botões -->
@@ -37,7 +37,7 @@
       <q-card>
         <q-card-section>
           <q-item-label>Modal Content</q-item-label>
-          <q-item-label>Name: {{ selectedCard.name }}</q-item-label>
+          <q-item-label>Name: {{ selectedCard.title }}</q-item-label>
           <q-item-label>Description: {{ selectedCard.description }}</q-item-label>
           <!-- Adicione mais informações mockadas conforme necessário -->
         </q-card-section>
@@ -96,11 +96,7 @@ export default defineComponent({
     },
     viewCard (card) {
       // Abrir o modal e preencher os dados mockados
-      this.selectedCard = {
-        name: card.name,
-        description: card.description
-        // Adicione mais informações mockadas conforme necessário
-      }
+      this.selectedCard = { ...card }
       this.showModal = true
     }
   }
@@ -122,11 +118,15 @@ export default defineComponent({
   height: auto  ;
   padding-top: 2%;
 }
-
 / Optional: Add some margin at the top and bottom of q-list */
 .q-pa-md {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.img {
+  width: 115px;
+  height: 115px;
 }
 
 .pagination {
