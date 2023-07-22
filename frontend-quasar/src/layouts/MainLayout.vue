@@ -1,42 +1,43 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+      <div class="q-px-lg q-pt q-mb-md row items-center">
+        <!-- Botão -->
+        <div class="col-auto">
+          <q-toolbar>
+            <q-btn
+              flat
+              dense
+              round
+              icon="menu"
+              aria-label="Menu"
+              @click="toggleLeftDrawer"
+            />
+          </q-toolbar>
+        </div>
 
-      </q-toolbar>
+        <!-- Título "Receitas" com margem à direita -->
+        <div class="col q-mr-lg">
+          <div class="text-h4">Receitas</div>
+        </div>
 
-      <div class="q-px-lg q-pt-xl q-mb-md">
-            <div class="text-h4">Receitas</div>
-            <div class="absolute-bottom-right q-mb-md q-px-sm">SCC0961</div>
+        <!-- Identificador -->
+        <div class="col-auto">
+          <div class="absolute-bottom-right q-mb-md q-px-sm">SCC0961</div>
+        </div>
       </div>
-      <q-img src="src\assets\imgs\food.jpg" class="header-image absolute-top"/>
+
+      <!-- Imagem de cabeçalho -->
+      <q-img src="src\assets\imgs\food.jpg" class="header-image absolute-top" />
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label
-          header
-        >
+        <q-item-label header>
           Menus
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -91,9 +92,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-  .header-image {
-    height: 100%;
-    z-index: -1;
-    opacity: 0.5;
-  }
+.header-image {
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+}
+.text-h4 {
+  padding-left: 10px;
+  font-size: bold;
+}
 </style>

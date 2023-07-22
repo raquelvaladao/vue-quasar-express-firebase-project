@@ -3,6 +3,7 @@
 ## Development
 
 ### Mock API with JSON Server
+
 This repository provides a simple mock API setup using JSON Server. It allows you to create a mock API with minimal effort, making it convenient for frontend development and testing.
 
 #### Getting Started
@@ -16,7 +17,13 @@ This repository provides a simple mock API setup using JSON Server. It allows yo
 ```bash
   npm install
 ```
-    
+
+* Install the JSON-server required dependencies by running the following command:
+
+```bash
+  npm install -g json-server
+```
+
 * After the installation is complete, start the JSON Server with the following command:
 
 ```bash
