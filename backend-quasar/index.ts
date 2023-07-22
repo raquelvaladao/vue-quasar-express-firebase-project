@@ -37,22 +37,17 @@ app.get('/all', async (req, res) => {
   }
 });
 
-app.get('/test', async (req: Request, res: Response) => {
-  const novoDoc: Recipe = {
-    calories: 210,
-    carbs: '43g',
-    fat: '3g',
-    id: 634927,
-    image: 'https://spoonacular.com/recipeImages/90629-312x231.jpg',
-    protein: '1g',
-    title: 'Teste'
+app.post('/fav', async (req: Request, res: Response) => {
+  const favorite: any = {
+    id: req.body.id,
+    fav: true
   };
   
   //if not
   //adicionar à collection food um alimento com id da API
-  const docRef = db.collection('food').doc(novoDoc.id); 
+  const docRef = db.collection('food').doc(favorite.id); 
 
-  await docRef.set(novoDoc);
+  await docRef.set(favorite);
   res.send(await getFoodList());
 });
 
