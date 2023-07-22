@@ -62,7 +62,7 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'history', // available values: 'hash', 'history'
       env: {
         API_URL: ctx.dev
-          ? 'https://api.spoonacular.com/'
+          ? 'http://localhost:4000/'
           : 'https://api.spoonacular.com/'
       },
       // vueRouterBase,
@@ -107,19 +107,19 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {
-      brand: {
-        primary: '#04b03a',
-        secondary: '#0b5418',
+        brand: {
+          primary: '#04b03a',
+          secondary: '#0b5418',
 
-        dark: '#1d1d1d',
-        'dark-page': '#121212',
+          dark: '#1d1d1d',
+          'dark-page': '#121212',
 
-        positive: '#21BA45',
-        negative: '#C10015',
-        info: '#31CCEC',
-        warning: '#F2C037'
-      }
-    },
+          positive: '#21BA45',
+          negative: '#C10015',
+          info: '#31CCEC',
+          warning: '#F2C037'
+        }
+      },
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
