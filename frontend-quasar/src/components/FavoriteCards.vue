@@ -1,34 +1,36 @@
 <template>
-    <q-page>
-      <q-page-container style="padding-top: 0%; padding-left: 0%;">
-        <div class="q-pa-md">
-          <q-list bordered separator>
-            <q-item v-for="(card, index) in paginatedCards" :key="index" class="q-mb-md">
-              <q-item-section avatar>
-                <q-avatar class="img">
-                  <img :src="card.image" alt="Card Image">
-                </q-avatar>
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="text-weight-bold">{{ card.title }}</q-item-label>
-                <q-item-label lines="2">{{ card.calories }} calorias</q-item-label>
-                <q-item-label>
-                  <q-badge rounded :label="'Proteinas: ' + card.protein" color="primary" />
-                  <q-badge rounded :label="'Gorduras: ' + card.fat" color="secondary" />
-                  <q-badge rounded :label="'Carboidratos: ' + card.carbs" color="accent" />
-                </q-item-label>
-                <div class="q-ml-auto" style="display: flex;">
-                  <q-btn flat icon="remove_red_eye" @click="viewCard(card)" />
-                </div>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </div>
+  <q-page>
+    <q-page-container style="padding-top: 0%; padding-left: 0%;">
+      <div class="q-pa-md">
+        <q-list bordered separator>
+          <q-item v-for="(card, index) in paginatedCards" :key="index" class="q-mb-md">
+            <q-item-section avatar>
+              <q-avatar class="img">
+                <img :src="card.image" alt="Card Image">
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label class="text-weight-bold">{{ card.title }}</q-item-label>
+              <q-item-label lines="2">{{ card.calories }} calorias</q-item-label>
+              <q-item-label>
+                <q-badge rounded :label="'Proteinas: ' + card.protein" color="primary" />
+                <q-badge rounded :label="'Gorduras: ' + card.fat" color="secondary" />
+                <q-badge rounded :label="'Carboidratos: ' + card.carbs" color="accent" />
+              </q-item-label>
+              <div class="q-ml-auto" style="display: flex;">
+                <q-btn flat icon="remove_red_eye" @click="viewCard(card)" />
+              </div>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+      <div class="pagination-container">
         <q-pagination v-model="currentPage" :min="1" :max="totalPages" @input="changePage" class="pagination" />
-      </q-page-container>
-      <CardModal :detailedCard="detailedCard" :selectedCard="selectedCard" v-model="showModal"></CardModal>
-    </q-page>
-  </template>
+      </div>
+    </q-page-container>
+    <CardModal :detailedCard="detailedCard" :selectedCard="selectedCard" v-model="showModal"></CardModal>
+  </q-page>
+</template>
 <script>
 import { defineComponent } from 'vue'
 import { ConsultService } from '../services/ConsultServices'
@@ -86,15 +88,22 @@ export default defineComponent({
 })
 </script>
 <style>
-  .q-pa-md {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .img {
-    width: 115px;
-    height: 115px;
-  }
-  .pagination {
-    margin-top: auto;
-  }
-</style>
+.q-pa-md {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.img {
+  width: 115px;
+  height: 115px;
+}
+
+.pagination {
+  margin-top: auto;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}</style>

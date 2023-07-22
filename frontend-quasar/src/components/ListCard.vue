@@ -22,14 +22,16 @@
               <!-- Nova div para envolver os botões -->
               <div class="q-ml-auto" style="display: flex;">
                 <q-btn flat icon="edit" @click="editCard(card)" />
-                <q-btn flat icon="favorite" @click="favoriteCard(card)" :color="card.fav ? 'red' : ''"/>
+                <q-btn flat icon="favorite" @click="favoriteCard(card)" :color="card.fav ? 'red' : ''" />
                 <q-btn flat icon="remove_red_eye" @click="viewCard(card)" />
               </div>
             </q-item-section>
           </q-item>
         </q-list>
       </div>
-      <q-pagination v-model="currentPage" :min="1" :max="totalPages" @input="changePage" class="pagination" />
+      <div class="pagination-container">
+        <q-pagination v-model="currentPage" :min="1" :max="totalPages" @input="changePage" class="pagination" />
+      </div>
     </q-page-container>
     <CardModal :detailedCard="detailedCard" :selectedCard="selectedCard" v-model="showModal"></CardModal>
   </q-page>
@@ -138,4 +140,11 @@ export default defineComponent({
 .pagination {
   margin-top: auto;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 </style>
