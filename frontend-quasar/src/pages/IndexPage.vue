@@ -7,8 +7,8 @@
 <script lang="ts">
 // import { Todo, Meta } from '../components/models'
 import { defineComponent } from 'vue'
+import { ConsultService } from '../services/ConsultServices'
 import ListCard from '../components/ListCard.vue'
-import { api } from '../boot/axios'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -25,7 +25,7 @@ export default defineComponent({
   methods: {
     async loadData () {
       try {
-        const response = await api.get('items/')
+        const response = await ConsultService.getAllElementsFavorites()
         this.cards = response.data
       } catch (error) {
         console.error(error)

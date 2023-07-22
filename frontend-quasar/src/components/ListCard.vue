@@ -37,7 +37,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { api } from '../boot/axios'
+import { ConsultService } from '../services/ConsultServices'
 import CardModal from './CardModal.vue'
 
 export default defineComponent({
@@ -90,7 +90,7 @@ export default defineComponent({
     },
     async loadDetail (id) {
       try {
-        const response = await api.get(`items/${id}`)
+        const response = await ConsultService.getElementById(id)
         this.detailedCard = response.data
         this.showModal = true
       } catch (error) {

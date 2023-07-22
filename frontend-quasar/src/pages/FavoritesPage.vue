@@ -1,11 +1,35 @@
 <template>
-  <q-page class="flex flex-center">
-    <h5> FAVORITOS </h5>
+  <q-page padding>
+    <ListCard :cards="cards"></ListCard>
   </q-page>
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue'
+import { ConsultService } from '../services/ConsultServices'
+import ListCard from '../components/ListCard.vue'
 
-}
+export default defineComponent({
+  name: 'FavoritesPage',
+  components: { ListCard },
+  data () {
+    return {
+      cards: [],
+      itemsPerPage: 0
+    }
+  },
+  async created () {
+    await this.loadData()
+  },
+  methods: {
+    async loadData () {
+      try {
+        const response = await ConsultService.getAllElementsHome()
+        this.cards = response.data
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+})
 </script>
