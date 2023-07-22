@@ -8,8 +8,8 @@
 // import { Todo, Meta } from '../components/models'
 import { defineComponent } from 'vue'
 import { ConsultService } from '../services/ConsultServices'
+import { Recipe } from '../components/Recipe'
 import ListCard from '../components/ListCard.vue'
-import { Recipe } from 'src/components/Recipe'
 
 export default defineComponent({
   name: 'IndexPage',
