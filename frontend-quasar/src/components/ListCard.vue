@@ -31,52 +31,18 @@
       </div>
       <q-pagination v-model="currentPage" :min="1" :max="totalPages" @input="changePage" class="pagination" />
     </q-page-container>
-
-    <q-dialog v-model="showModal">
-      <q-card>
-        <q-toolbar>
-          <q-avatar>
-            <img :src="selectedCard.image">
-          </q-avatar>
-
-          <q-toolbar-title><span class="text-weight-bold">{{ selectedCard.title }}</span></q-toolbar-title>
-
-          <q-btn flat round dense icon="close" v-close-popup />
-        </q-toolbar>
-
-        <q-card-section>
-          <q-item>
-            <q-item-section>
-              <q-item-label class="text-weight-bold">Calorias: {{ selectedCard.calories }} calorias</q-item-label>
-              <q-item-label class="text-weight-bold">Porções: {{ detailedCard.servings }}</q-item-label>
-              <!-- <q-item-label>Instruções: {{ detailedCard.instructions }}</q-item-label> -->
-              <q-item-label class="text-weight-bold">Tempo de preparação: {{ detailedCard.preparationMinutes === -1 ? 'N/A' : detailedCard.preparationMinutes + ' minutos' }}</q-item-label>
-              <q-item-label class="text-weight-bold">Tempo de cozinhamento: {{ detailedCard.cookingMinutes === -1 ? 'N/A' : detailedCard.cookingMinutes + ' minutos' }}</q-item-label>
-              <q-item-label>
-                <q-chip v-if="detailedCard.vegetarian" color="teal" text-color="white" icon="eco">Vegetariano</q-chip>
-                <q-chip v-if="detailedCard.vegan" color="teal" text-color="white" icon="eco">Vegano</q-chip>
-                <q-chip v-if="detailedCard.glutenFree" color="teal" text-color="white" icon="restaurant">Sem gluten</q-chip>
-                <q-chip v-if="detailedCard.dairyFree" color="teal" text-color="white" icon="restaurant">Sem lactose</q-chip>
-                <q-chip v-if="detailedCard.veryHealthy" color="teal" text-color="white" icon="nutrition">Saudável</q-chip>
-                <q-chip v-if="detailedCard.cheap" color="teal" text-color="white" icon="monetization_on">Barato</q-chip>
-                <q-chip v-if="detailedCard.veryPopular" color="teal" text-color="white" icon="mood">Popular</q-chip>
-              </q-item-label>
-              <q-item-label >Dietas: {{ detailedCard.diets }}</q-item-label>
-              <q-item-label >Sumário: {{ detailedCard.summary }}</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-card-section>
-        <!-- Resto do template... -->
-      </q-card>
-    </q-dialog>
+    <CardModal :detailedCard="detailedCard" :selectedCard="selectedCard" v-model="showModal"></CardModal>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 import { api } from '../boot/axios'
+import CardModal from './CardModal.vue'
+
 export default defineComponent({
   name: 'ListCard',
+  components: { CardModal },
   props: {
     cards: {
       type: Object,
@@ -101,7 +67,6 @@ export default defineComponent({
     paginatedCards () {
       const start = (this.currentPage - 1) * this.itemsPerPage
       const end = start + this.itemsPerPage
-      console.log(this.currentPage)
       return this.cards.slice(start, end)
     }
   },
@@ -117,7 +82,6 @@ export default defineComponent({
     favoriteCard (card) {
       // Add your favorite card logic here
       card.favorite = !card.favorite
-      console.log('Favorite card', card)
     },
     viewCard (card) {
       // Abrir o modal e preencher os dados mockados
