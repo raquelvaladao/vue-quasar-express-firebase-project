@@ -63,7 +63,8 @@ module.exports = configure(function (ctx) {
       env: {
         API_URL: ctx.dev
           ? 'http://localhost:4000/'
-          : 'https://api.spoonacular.com/'
+          : 'https://api.spoonacular.com/',
+        FIREBASE_API_URL: 'http://localhost:8000/'
       },
       // vueRouterBase,
       // vueDevtools,

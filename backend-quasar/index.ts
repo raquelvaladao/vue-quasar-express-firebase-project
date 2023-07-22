@@ -12,6 +12,8 @@ const admin = require("firebase-admin");
 
 const serviceAccount = require("../serviceAccountKey.json");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -40,28 +42,39 @@ app.get('/all', async (req, res) => {
 });
 
 app.post('/fav', async (req: Request, res: Response) => {
-  const favorite: any = {
-    id: req.body.id,
-    fav: true
-  };
-  
-  //if not
-  //adicionar à collection food um alimento com id da API
-  const docRef = db.collection('fav').doc(favorite.id); 
+  try {
+    const id = req.body.id;
+    if (!id) {
+      res.send('ID da receita não fornecido no corpo da requisição.');
+    }
 
-  await docRef.set(favorite);
-  res.send(await getFoodList());
+    const data = await getRecipe(req.body.id);
+    if (data) {
+      const deleteResult = await db.collection('fav').doc(id).delete();
+      return res.status(201).json({ message: 'Removido'});
+    }
+
+    const novoDoc = { id: id, fav: true };
+    const docRef = db.collection('fav').doc(id);
+    await docRef.set(novoDoc);
+
+    return res.status(201).json({ message: 'Favorito'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro'});
+  }
 });
-
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
 
-async function getFoodList() {
-  const snapshot = await db.collection('food').get();
-  snapshot.forEach((doc: any) => {
-    console.log(doc.id, '=>', doc.data());
-  });
-  return "Adicionado!";
+async function getRecipe(id: any) {
+  const foodRef = db.collection('fav').doc(id);
+  const doc = await foodRef.get();
+  if (!doc.exists) {
+    return null;
+  } else {
+    return doc.data();
+  }
 }

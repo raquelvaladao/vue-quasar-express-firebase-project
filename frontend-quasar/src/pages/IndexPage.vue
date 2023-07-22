@@ -9,11 +9,7 @@
 import { defineComponent } from 'vue'
 import { ConsultService } from '../services/ConsultServices'
 import ListCard from '../components/ListCard.vue'
-<<<<<<< Updated upstream
-=======
-import { api } from '../boot/axios'
 import { Recipe } from 'src/components/Recipe'
->>>>>>> Stashed changes
 
 export default defineComponent({
   name: 'IndexPage',
@@ -30,9 +26,8 @@ export default defineComponent({
   methods: {
     async loadData () {
       try {
-        const response = await ConsultService.getAllElementsFavorites()
-        this.cards = response.data
-        this.cards[0].fav = true
+        const response = await ConsultService.getAllElementsHome()
+        this.cards = response
       } catch (error) {
         console.error(error)
       }

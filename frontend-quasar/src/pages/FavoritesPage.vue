@@ -1,17 +1,17 @@
 <template>
   <q-page padding>
-    <ListCard :cards="cards"></ListCard>
+    <FavoriteCards :cards="cards"></FavoriteCards>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 import { ConsultService } from '../services/ConsultServices'
-import ListCard from '../components/ListCard.vue'
+import FavoriteCards from '../components/FavoriteCards.vue'
 
 export default defineComponent({
   name: 'FavoritesPage',
-  components: { ListCard },
+  components: { FavoriteCards },
   data () {
     return {
       cards: [],
@@ -24,8 +24,8 @@ export default defineComponent({
   methods: {
     async loadData () {
       try {
-        const response = await ConsultService.getAllElementsHome()
-        this.cards = response.data
+        const response = await ConsultService.getAllElementsFavorites()
+        this.cards = response
       } catch (error) {
         console.error(error)
       }

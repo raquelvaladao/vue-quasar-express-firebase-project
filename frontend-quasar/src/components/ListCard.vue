@@ -81,7 +81,7 @@ export default defineComponent({
     },
     favoriteCard (card) {
       // Add your favorite card logic here
-      card.fav = !card.fav
+      this.postFavorite(card)
     },
     viewCard (card) {
       // Abrir o modal e preencher os dados mockados
@@ -93,6 +93,14 @@ export default defineComponent({
         const response = await ConsultService.getElementById(id)
         this.detailedCard = response.data
         this.showModal = true
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async postFavorite (card) {
+      try {
+        await ConsultService.postFavorite(String(card.id))
+        card.fav = !card.fav
       } catch (error) {
         console.error(error)
       }

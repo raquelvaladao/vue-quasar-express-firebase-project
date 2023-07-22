@@ -6,5 +6,6 @@ export interface Recipe {
     image: string;
     protein: string;
     title: string;
+    fav: boolean;
 }
   
