@@ -22,7 +22,7 @@
               <!-- Nova div para envolver os botões -->
               <div class="q-ml-auto" style="display: flex;">
                 <q-btn flat icon="edit" @click="editCard(card)" />
-                <q-btn flat icon="favorite" @click="favoriteCard(card)" :color="card.favorite ? 'red' : ''"/>
+                <q-btn flat icon="favorite" @click="favoriteCard(card)" :color="card.fav ? 'red' : ''"/>
                 <q-btn flat icon="remove_red_eye" @click="viewCard(card)" />
               </div>
             </q-item-section>
@@ -81,7 +81,7 @@ export default defineComponent({
     },
     favoriteCard (card) {
       // Add your favorite card logic here
-      card.favorite = !card.favorite
+      card.fav = !card.fav
     },
     viewCard (card) {
       // Abrir o modal e preencher os dados mockados

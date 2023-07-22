@@ -9,13 +9,18 @@
 import { defineComponent } from 'vue'
 import { ConsultService } from '../services/ConsultServices'
 import ListCard from '../components/ListCard.vue'
+<<<<<<< Updated upstream
+=======
+import { api } from '../boot/axios'
+import { Recipe } from 'src/components/Recipe'
+>>>>>>> Stashed changes
 
 export default defineComponent({
   name: 'IndexPage',
   components: { ListCard },
   data () {
     return {
-      cards: [],
+      cards: [] as Recipe[],
       itemsPerPage: 0
     }
   },
@@ -27,6 +32,7 @@ export default defineComponent({
       try {
         const response = await ConsultService.getAllElementsFavorites()
         this.cards = response.data
+        this.cards[0].fav = true
       } catch (error) {
         console.error(error)
       }

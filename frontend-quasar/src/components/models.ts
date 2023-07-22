@@ -7,16 +7,6 @@ export interface Meta {
   totalCount: number;
 }
 
-export interface Recipe {
-  id: number;
-  calories: number;
-  carbs: string;
-  fat: string;
-  image: string;
-  protein: string;
-  title: string;
-}
-
 export interface Ingredient {
   image: string;
   consistency: string;

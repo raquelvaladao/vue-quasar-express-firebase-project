@@ -6,6 +6,7 @@ dotenv.config();
 
 const app: Express = express();
 const { getFirestore } = require('firebase-admin/firestore');
+const cors = require('cors')
 const port = process.env.PORT;
 const admin = require("firebase-admin");
 
@@ -17,13 +18,14 @@ admin.initializeApp({
 
 const db = getFirestore();
 
+app.use(cors())
 // GET detalhes do produto por ID
 // GET produtos considerando edições do banco
 
 app.get('/all', async (req, res) => {
   try {
     const db = admin.firestore();
-    const snapshot = await db.collection('food').get();
+    const snapshot = await db.collection('fav').get();
 
     const foods: any = [];
     snapshot.forEach((doc: any) => {
@@ -45,7 +47,7 @@ app.post('/fav', async (req: Request, res: Response) => {
   
   //if not
   //adicionar à collection food um alimento com id da API
-  const docRef = db.collection('food').doc(favorite.id); 
+  const docRef = db.collection('fav').doc(favorite.id); 
 
   await docRef.set(favorite);
   res.send(await getFoodList());
