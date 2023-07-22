@@ -126,7 +126,7 @@ export default defineComponent({
     },
     async loadDetail (id) {
       try {
-        const response = await api.get(`recipes/${id}/information?includeNutrition=false&apiKey=43d5db533cad40b789fb6d8d8b2d1d8a`)
+        const response = await api.get(`items/${id}`)
         this.detailedCard = response.data
         this.showModal = true
       } catch (error) {

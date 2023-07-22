@@ -25,7 +25,7 @@ export default defineComponent({
   methods: {
     async loadData () {
       try {
-        const response = await api.get('recipes/findByNutrients?apiKey=43d5db533cad40b789fb6d8d8b2d1d8a&minCarbs=0&number=50')
+        const response = await api.get('items/')
         this.cards = response.data
       } catch (error) {
         console.error(error)
