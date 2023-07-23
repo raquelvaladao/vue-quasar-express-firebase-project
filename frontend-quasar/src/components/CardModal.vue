@@ -35,7 +35,7 @@
                                 icon="mood">Popular</q-chip>
                         </q-item-label>
                         <q-item-label><span class="text-weight-bold">Dietas: </span>{{ detailedCard.diets }}</q-item-label>
-                        <q-item-label><span class="text-weight-bold">Sumário: </span>{{ detailedCard.summary }}</q-item-label>
+                        <q-item-label class="text-justify"><span class="text-weight-bold">Sumário: </span> <span v-html="renderHTML(detailedCard.summary)"></span> </q-item-label>
                     </q-item-section>
                 </q-item>
             </q-card-section>
@@ -60,8 +60,21 @@ export default defineComponent({
       type: Object,
       required: true
     }
+  },
+  methods: {
+    renderHTML (html) {
+      // Sanitize the HTML to prevent XSS attacks (optional)
+      // You can use libraries like DOMPurify for this purpose.
+
+      // If you trust the source of the HTML, you can skip sanitization.
+      return html
+    }
   }
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.text-justify {
+    text-align: justify;
+}
+</style>
