@@ -39,7 +39,7 @@
                     </q-item-section>
                 </q-item>
             </q-card-section>
-            <CarouselModal/>
+            <CarouselModal :detailedCard="detailedCard"/>
         </q-card>
     </q-dialog>
 </template>
