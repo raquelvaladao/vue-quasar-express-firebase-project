@@ -39,15 +39,18 @@
                     </q-item-section>
                 </q-item>
             </q-card-section>
+            <CarouselModal/>
         </q-card>
     </q-dialog>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import CarouselModal from './CarouselModal.vue'
 
 export default defineComponent({
   name: 'CardModal',
+  components: { CarouselModal },
   props: {
     detailedCard: {
       type: Object,

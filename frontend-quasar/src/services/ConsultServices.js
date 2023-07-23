@@ -2,7 +2,7 @@ import { api, firebaseApi } from '../boot/axios'
 
 export class ConsultService {
   static itemsURL = 'items/'
-  static getItemById = 'items/'
+  static getItemById = 'itemsDetailed/'
 
   static favoriteItems = 'all'
   static setOrRemoveFavorite = 'fav'
@@ -34,7 +34,7 @@ export class ConsultService {
   }
 
   static postFavorite (id) {
-    const res = firebaseApi.post(this.setOrRemoveFavorite, { id: id })
+    const res = firebaseApi.post(this.setOrRemoveFavorite, { id })
     console.log(res.data)
     return res
   }
