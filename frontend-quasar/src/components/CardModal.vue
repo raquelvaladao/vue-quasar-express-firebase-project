@@ -12,12 +12,12 @@
             <q-card-section>
                 <q-item>
                     <q-item-section>
-                        <q-item-label class="text-weight-bold">Calorias: {{ selectedCard.calories }} calorias</q-item-label>
-                        <q-item-label class="text-weight-bold">Porções: {{ detailedCard.servings }}</q-item-label>
+                        <q-item-label><span class="text-weight-bold"> Calorias: </span>{{ selectedCard.calories }} calorias</q-item-label>
+                        <q-item-label><span class="text-weight-bold"> Porções: </span>{{ detailedCard.servings }}</q-item-label>
                         <!-- <q-item-label>Instruções: {{ detailedCard.instructions }}</q-item-label> -->
-                        <q-item-label class="text-weight-bold">Tempo de preparação: {{ detailedCard.preparationMinutes ===
+                        <q-item-label><span class="text-weight-bold">Tempo de preparação: </span>{{ detailedCard.preparationMinutes ===
                             -1 ? 'N/A' : detailedCard.preparationMinutes + ' minutos' }}</q-item-label>
-                        <q-item-label class="text-weight-bold">Tempo de cozinhamento: {{ detailedCard.cookingMinutes === -1
+                        <q-item-label><span class="text-weight-bold">Tempo de cozinhamento: </span>{{ detailedCard.cookingMinutes === -1
                             ? 'N/A' : detailedCard.cookingMinutes + ' minutos' }}</q-item-label>
                         <q-item-label>
                             <q-chip v-if="detailedCard.vegetarian" color="teal" text-color="white"
@@ -34,8 +34,8 @@
                             <q-chip v-if="detailedCard.veryPopular" color="teal" text-color="white"
                                 icon="mood">Popular</q-chip>
                         </q-item-label>
-                        <q-item-label>Dietas: {{ detailedCard.diets }}</q-item-label>
-                        <q-item-label>Sumário: {{ detailedCard.summary }}</q-item-label>
+                        <q-item-label><span class="text-weight-bold">Dietas: </span>{{ detailedCard.diets }}</q-item-label>
+                        <q-item-label><span class="text-weight-bold">Sumário: </span>{{ detailedCard.summary }}</q-item-label>
                     </q-item-section>
                 </q-item>
             </q-card-section>

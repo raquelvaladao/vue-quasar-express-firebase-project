@@ -54,7 +54,7 @@ export default defineComponent({
   data () {
     return {
       currentPage: 1,
-      itemsPerPage: 5,
+      itemsPerPage: 10,
       showModal: false,
       selectedCard: {},
       detailedCard: {}

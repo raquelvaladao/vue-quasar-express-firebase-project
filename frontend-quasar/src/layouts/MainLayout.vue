@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <div class="q-px-lg q-pt q-mb-md row items-center">
+    <q-header reveal elevated>
+      <div class="q-px-sm q-pt row items-center">
         <!-- Botão -->
         <div class="col-auto">
           <q-toolbar>
@@ -11,14 +11,15 @@
               round
               icon="menu"
               aria-label="Menu"
+              class="q-mr-xl"
               @click="toggleLeftDrawer"
             />
           </q-toolbar>
         </div>
 
         <!-- Título "Receitas" com margem à direita -->
-        <div class="col q-mr-lg">
-          <div class="text-h4">Receitas</div>
+        <div class="col q-mr-lm">
+          <div class="text-h4 q-my-md">Receitas</div>
         </div>
 
         <!-- Identificador -->
