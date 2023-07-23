@@ -41,6 +41,7 @@ app.get('/all', async (req, res) => {
   }
 });
 
+//todo: id sem enviar, stt
 app.post('/fav', async (req: Request, res: Response) => {
   try {
     const id = req.body.id;
@@ -65,6 +66,29 @@ app.post('/fav', async (req: Request, res: Response) => {
   }
 });
 
+app.post('/edit', async (req: Request, res: Response) => {
+  try {
+    const id = req.body.id;
+    if (!id) {
+      res.send('ID da receita não fornecido no corpo da requisição.');
+    }
+
+    const data = await getRecipe(req.body.id);
+    if (data) {
+      const deleteResult = await db.collection('fav').doc(id).delete();
+      return res.status(201).json({ message: 'Removido'});
+    }
+
+    const novoDoc = { id: id, fav: true };
+    const docRef = db.collection('fav').doc(id);
+    await docRef.set(novoDoc);
+
+    return res.status(201).json({ message: 'Favorito'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro'});
+  }
+});
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });

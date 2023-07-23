@@ -68,6 +68,13 @@ const linksList = [
     icon: 'favorite',
     link: { name: 'favorites' },
     route: '/favorites'
+  },
+  {
+    title: 'Comparar receitas',
+    caption: '',
+    icon: 'sync_alt',
+    link: { name: 'comparative' },
+    route: '/comparative'
   }
 ]
 
