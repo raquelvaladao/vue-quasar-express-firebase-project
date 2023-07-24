@@ -21,7 +21,7 @@
 
               <!-- Nova div para envolver os botões -->
               <div class="q-ml-auto" style="display: flex;">
-                <q-btn flat icon="edit" @click="editCard(card)" />
+                <q-btn flat icon="edit" :to="`/edit/${card.id}`" />
                 <q-btn flat icon="favorite" @click="favoriteCard(card)" :color="card.fav ? 'red' : ''" />
                 <q-btn flat icon="remove_red_eye" @click="viewCard(card)" />
               </div>
