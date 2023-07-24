@@ -40,9 +40,6 @@ export default {
       } else {
         this.showComparative = false
       }
-      console.log(this.selectedItem1)
-      console.log(this.selectedItem2)
-      console.log(this.showComparative)
     }
   }
 }
