@@ -1,14 +1,14 @@
 <template>
   <div class="q-pa-md" style="justify-content: center; align-items: center; padding: 20px 150px 0 150px">
-    <q-form class="q-gutter-md" @submit="onSubmit" @reset="onReset">
+    <q-form class="q-gutter-md" @submit="onSubmit" @reset="onReset" v-if="show">
       <q-input filled v-for="(item, index) in dataSelected" :key="index.toString()"
-        :hint="index.toUpperCase()" lazy-rules :rules="[ val => val && val.length > 0 || 'Digite algo!']" v-model="dataSelected[index]" :value="item" />
-
+        :hint="index.toUpperCase()" lazy-rules :rules="[ val => val && val.toString().length > 0 || 'Digite algo!']" v-model="dataSelected[index]" :value="item" />
       <div>
         <q-btn label="Submit" type="submit" color="primary" />
         <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
       </div>
     </q-form>
+    <h1 v-if="!show">Nenhuma alteração detectada!</h1>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default defineComponent({
         fat: '',
         carbs: ''
       },
-      formData: {}
+      show: true
     }
   },
   async created () {
@@ -58,7 +58,12 @@ export default defineComponent({
       this.loadDetail(this.$route.params.id)
     },
     onSubmit () {
-      this.editCard()
+      if (this.selectedCard.title !== this.dataSelected.title || this.selectedCard.calories !== this.dataSelected.calories || this.selectedCard.protein !== this.dataSelected.protein || this.selectedCard.fat !== this.dataSelected.fat || this.selectedCard.carbs !== this.dataSelected.carbs) {
+        this.editCard(this.selectedCard)
+      } else {
+        this.show = false
+        setTimeout(() => { this.show = true }, 1500)
+      }
     },
     async editCard (edited) {
       try {
