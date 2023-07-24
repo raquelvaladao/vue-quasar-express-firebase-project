@@ -40,6 +40,15 @@ app.get('/all', async (req, res) => {
   }
 });
 
+app.get('/edited/:id', async (req, res) => {
+  try {
+    res.json(await getRecipe(req.params.id, 'edited'));
+  } catch (error) {
+    console.error('Erro ao listar dados da coleção "food":', error);
+    res.json(null);
+  }
+});
+
 app.get('/alledited', async (req, res) => {
   try {
     const db = admin.firestore();
@@ -65,7 +74,7 @@ app.post('/fav', async (req: Request, res: Response) => {
       res.send('ID da receita não fornecido no corpo da requisição.');
     }
 
-    const data = await getRecipe(req.body.id);
+    const data = await getRecipe(req.body.id, 'fav');
     if (data) {
       const deleteResult = await db.collection('fav').doc(id).delete();
       return res.status(201).json({ message: 'Removido'});
@@ -102,8 +111,8 @@ app.listen(8000, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:8000`);
 });
 
-async function getRecipe(id: any) {
-  const foodRef = db.collection('fav').doc(id);
+async function getRecipe(id: any, coll: any) {
+  const foodRef = db.collection(coll).doc(id);
   const doc = await foodRef.get();
   if (!doc.exists) {
     return null;
