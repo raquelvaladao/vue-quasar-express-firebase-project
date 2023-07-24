@@ -21,6 +21,19 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <q-dialog v-model="success">
+      <q-card>
+        <q-card-section>
+          <div class= "text-h6 flex-center">Sucesso!</div>
+        </q-card-section>
+        <q-card-section>
+          <div class= "q-pt-none">A receita foi alterada com sucesso.</div>
+        </q-card-section>
+        <q-card-actions align="center">
+          <q-btn label="OK" v-close-popup color="primary"/>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -33,6 +46,7 @@ export default defineComponent({
   data () {
     return {
       alert: false,
+      success: false,
       selectedCard: {}, // Change this to an object instead of an array
       dataSelected: {
         title: '',
@@ -73,6 +87,7 @@ export default defineComponent({
     onSubmit () {
       if (this.selectedCard.title !== this.dataSelected.title || this.selectedCard.calories !== this.dataSelected.calories || this.selectedCard.protein !== this.dataSelected.protein || this.selectedCard.fat !== this.dataSelected.fat || this.selectedCard.carbs !== this.dataSelected.carbs) {
         this.editCard(this.selectedCard)
+        this.success = true
       } else {
         this.alert = true
       }

@@ -91,13 +91,13 @@ app.post('/fav', async (req: Request, res: Response) => {
   }
 });
 
-app.post('/edit', async (req: Request, res: Response) => {
+app.post('/edit/:id', async (req: Request, res: Response) => {
   try {
     const body = req.body;
     if (!body) {
       res.send('body da receita não fornecido no corpo da requisição.');
     }
-    const docRef = db.collection('edited').doc(body.id);
+    const docRef = db.collection('edited').doc(req.params.id);
     await docRef.set(body);
 
     return res.status(201).json({ message: 'Editado'});

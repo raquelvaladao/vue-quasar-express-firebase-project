@@ -6,7 +6,7 @@ export class ConsultService {
 
   static favoriteItems = 'all'
   static setOrRemoveFavorite = 'fav'
-  static editedRecipe = 'edited'
+  static editedRecipe = 'edit'
   static allEditedRecipes = 'alledited'
 
   static async getAllElementsHome () {
@@ -48,7 +48,7 @@ export class ConsultService {
         edited.key = original[key]
       }
     })
-    const res = firebaseApi.post(`${this.original}/${original.id}`, edited)
+    const res = firebaseApi.post(`${this.editedRecipe}/${original.id}`, edited)
     console.log(res.data)
     return res
   }
