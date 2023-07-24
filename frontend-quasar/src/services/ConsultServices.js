@@ -41,6 +41,18 @@ export class ConsultService {
     return res
   }
 
+  static editCard (edited, original) {
+    Object.keys(edited).forEach(function (key) {
+      console.log('Chave : ' + key + ', Editado : ' + edited[key] + ', Original : ' + original[key])
+      if (!edited.key) {
+        edited.key = original[key]
+      }
+    })
+    const res = firebaseApi.post(`${this.original}/${original.id}`, edited)
+    console.log(res.data)
+    return res
+  }
+
   static async getAllElementsFavorites () {
     const Allfavorites = firebaseApi.get(this.favoriteItems)
     let favs = []

@@ -23,7 +23,7 @@ export default defineComponent({
       selectedCard: {}, // Change this to an object instead of an array
       dataSelected: {
         title: '',
-        calories: 0,
+        calories: -1,
         protein: '',
         fat: '',
         carbs: ''
@@ -42,6 +42,7 @@ export default defineComponent({
         for (const item of response) {
           if (item.id === Number(id)) {
             this.selectedCard = item
+            this.dataSelected.id = item.id
             this.dataSelected.title = item.title
             this.dataSelected.calories = item.calories
             this.dataSelected.protein = item.protein
@@ -60,6 +61,17 @@ export default defineComponent({
       this.formData.protein = null
       this.formData.fat = null
       this.formData.carbs = null
+    },
+    onSubmit () {
+      this.editCard()
+    },
+    async editCard (edited) {
+      try {
+        const response = await ConsultService.editCard(edited, this.dataSelected)
+        console.log(response.data)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })
