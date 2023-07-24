@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md" style="justify-content: center; align-items: center; padding: 20px 150px 0 150px">
     <q-form class="q-gutter-md" @submit="onSubmit" @reset="onReset">
-      <q-input filled v-for="(item, index) in dataSelected" :label="item.toString()" :key="index.toString()"
-        :hint="index.toUpperCase()" lazy-rules v-model="formData[index]" />
+      <q-input filled v-for="(item, index) in dataSelected" :key="index.toString()"
+        :hint="index.toUpperCase()" lazy-rules :rules="[ val => val && val.length > 0 || 'Digite algo!']" v-model="dataSelected[index]" />
 
       <div>
         <q-btn label="Submit" type="submit" color="primary" />
@@ -55,11 +55,7 @@ export default defineComponent({
       }
     },
     onReset () {
-      this.formData.title = null
-      this.formData.calories = null
-      this.formData.protein = null
-      this.formData.fat = null
-      this.formData.carbs = null
+      this.loadDetail(this.$route.params.id)
     }
   }
 })
