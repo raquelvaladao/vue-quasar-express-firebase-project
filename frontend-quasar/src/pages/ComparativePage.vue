@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <q-select
-      v-model="selectedItem1"
-      :options="items"
-      label="Selecione a receita 1"
-      @input="selectedItem1"
-    />
-    <q-select
-      v-model="selectedItem2"
-      :options="items.filter(item => item !== selectedItem1)"
-      label="Selecione a receita 2"
-      @input="selectedItem2"
-    />
+  <div class="container">
+    <div class="column">
+
+    </div>
+    <div class="column">
+      <q-select v-model="selectedItem1" :options="items" label="Selecione a receita 1" @input="selectedItem1" />
+
+    </div>
+    <div class="column">
+      <q-select v-model="selectedItem2" :options="items.filter(item => item !== selectedItem1)"
+        label="Selecione a receita 2" @input="selectedItem2" />
+    </div>
   </div>
 </template>
 
@@ -48,3 +47,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  /* Define o contêiner como um flex container */
+}
+
+.column {
+  flex: 1;
+  /* Faz com que cada coluna ocupe uma proporção igual do espaço disponível */
+  padding: 10px;
+  /* Adiciona algum espaçamento entre as colunas */
+}
+</style>
