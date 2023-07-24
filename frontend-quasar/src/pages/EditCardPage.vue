@@ -8,7 +8,19 @@
         <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
       </div>
     </q-form>
-    <h1 v-if="!show">Nenhuma alteração detectada!</h1>
+    <q-dialog v-model="alert">
+      <q-card>
+        <q-card-section>
+          <div class= "text-h6 flex-center">Nenhuma alteração detectada!</div>
+        </q-card-section>
+        <q-card-section>
+          <div class= "q-pt-none">É necessário alterar pelo menos um campo para concluir a alteração.</div>
+        </q-card-section>
+        <q-card-actions align="center">
+          <q-btn label="OK" v-close-popup color="primary"/>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -20,6 +32,7 @@ export default defineComponent({
   name: 'EditCardPage',
   data () {
     return {
+      alert: false,
       selectedCard: {}, // Change this to an object instead of an array
       dataSelected: {
         title: '',
@@ -61,8 +74,7 @@ export default defineComponent({
       if (this.selectedCard.title !== this.dataSelected.title || this.selectedCard.calories !== this.dataSelected.calories || this.selectedCard.protein !== this.dataSelected.protein || this.selectedCard.fat !== this.dataSelected.fat || this.selectedCard.carbs !== this.dataSelected.carbs) {
         this.editCard(this.selectedCard)
       } else {
-        this.show = false
-        setTimeout(() => { this.show = true }, 1500)
+        this.alert = true
       }
     },
     async editCard (edited) {
