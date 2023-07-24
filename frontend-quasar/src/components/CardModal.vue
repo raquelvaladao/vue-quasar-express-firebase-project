@@ -1,6 +1,6 @@
 <template>
     <q-dialog>
-        <q-card>
+        <q-card class="card-width">
             <q-toolbar>
                 <q-avatar>
                     <img :src="selectedCard.image">
@@ -64,21 +64,15 @@ export default defineComponent({
       type: Object,
       required: true
     }
-  },
-  methods: {
-    renderHTML (html) {
-      // Sanitize the HTML to prevent XSS attacks (optional)
-      // You can use libraries like DOMPurify for this purpose.
-
-      // If you trust the source of the HTML, you can skip sanitization.
-      return html
-    }
   }
 })
 </script>
 
 <style scoped>
 .text-justify {
-    text-align: justify;
+  text-align: justify;
+}
+.card-width {
+  width: 600px;
 }
 </style>
