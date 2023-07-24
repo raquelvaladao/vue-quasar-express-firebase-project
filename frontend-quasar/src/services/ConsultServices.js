@@ -6,6 +6,8 @@ export class ConsultService {
 
   static favoriteItems = 'all'
   static setOrRemoveFavorite = 'fav'
+  static editedRecipe = 'edited'
+  static allEditedRecipes = 'alledited'
 
   static async getAllElementsHome () {
     const Allfavorites = firebaseApi.get(this.favoriteItems)
@@ -26,7 +28,7 @@ export class ConsultService {
           }
         }
       }
-      return displayed
+      return this.getAllEditedRecipes(displayed)
     } catch (error) {
       console.error(error)
       return []
@@ -57,13 +59,39 @@ export class ConsultService {
           }
         }
       }
-      return displayed
+      return this.getAllEditedRecipes(displayed)
     } catch (error) {
       console.error(error)
     }
   }
 
+  static async getAllEditedRecipes (displayed) {
+    const responseEdited = firebaseApi.get(this.allEditedRecipes)
+    const edits = (await responseEdited).data
+    for (let i = 0; i < displayed.length; i++) {
+      for (let j = 0; j < edits.length; j++) {
+        if (String(displayed[i].id) === edits[j].id) {
+          displayed[i].title = edits[j].title
+          displayed[i].calories = edits[j].calories
+          displayed[i].fat = edits[j].fat
+          displayed[i].carbs = edits[j].carbs
+          displayed[i].protein = edits[j].protein
+        }
+      }
+    }
+    return displayed
+  }
+
   static getElementById (id) {
-    return api.get(this.getItemById + id)
+    const element = api.get(this.getItemById + id)
+    const edited = firebaseApi.get(`${this.editedRecipe}/${id}`)
+    if (edited) {
+      element.title = edited.title
+      element.calories = edited.calories
+      element.fat = edited.fat
+      element.carbs = edited.carbs
+      element.protein = edited.protein
+    }
+    return element
   }
 }
