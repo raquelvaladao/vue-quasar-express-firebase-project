@@ -7,7 +7,6 @@ dotenv.config();
 const app: Express = express();
 const { getFirestore } = require('firebase-admin/firestore');
 const cors = require('cors')
-const port = process.env.PORT;
 const admin = require("firebase-admin");
 
 const serviceAccount = require("../serviceAccountKey.json");
@@ -41,6 +40,23 @@ app.get('/all', async (req, res) => {
   }
 });
 
+app.get('/alledited', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const snapshot = await db.collection('edited').get();
+
+    const foods: any = [];
+    snapshot.forEach((doc: any) => {
+      foods.push(doc.data());
+    });
+
+    res.json(foods);
+  } catch (error) {
+    console.error('Erro ao listar dados da coleção "edited":', error);
+    res.status(500).json({ error: 'Erro ao listar dados da coleção "food"' });
+  }
+});
+
 //todo: id sem enviar, stt
 app.post('/fav', async (req: Request, res: Response) => {
   try {
@@ -68,29 +84,22 @@ app.post('/fav', async (req: Request, res: Response) => {
 
 app.post('/edit', async (req: Request, res: Response) => {
   try {
-    const id = req.body.id;
-    if (!id) {
-      res.send('ID da receita não fornecido no corpo da requisição.');
+    const body = req.body;
+    if (!body) {
+      res.send('body da receita não fornecido no corpo da requisição.');
     }
+    const docRef = db.collection('edited').doc(body.id);
+    await docRef.set(body);
 
-    const data = await getRecipe(req.body.id);
-    if (data) {
-      const deleteResult = await db.collection('fav').doc(id).delete();
-      return res.status(201).json({ message: 'Removido'});
-    }
-
-    const novoDoc = { id: id, fav: true };
-    const docRef = db.collection('fav').doc(id);
-    await docRef.set(novoDoc);
-
-    return res.status(201).json({ message: 'Favorito'});
+    return res.status(201).json({ message: 'Editado'});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Erro'});
   }
 });
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+
+app.listen(8000, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:8000`);
 });
 
 async function getRecipe(id: any) {
