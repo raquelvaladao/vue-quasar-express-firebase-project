@@ -43,14 +43,12 @@ export class ConsultService {
 
   static editCard (edited, original) {
     Object.keys(edited).forEach(function (key) {
-      console.log('Chave : ' + key + ', Editado : ' + edited[key] + ', Original : ' + original[key])
       if (!edited[key]) {
         edited.key = original[key]
       }
     })
     edited.id = original.id
     const res = firebaseApi.post(`${this.editedRecipe}/${original.id}`, edited)
-    console.log(edited)
     return res
   }
 
@@ -81,7 +79,6 @@ export class ConsultService {
   static async getAllEditedRecipes (displayed) {
     const responseEdited = firebaseApi.get(this.allEditedRecipes)
     const edits = (await responseEdited).data
-    console.log(edits)
     for (let i = 0; i < displayed.length; i++) {
       for (let j = 0; j < edits.length; j++) {
         if (String(displayed[i].id) === String(edits[j].id)) {

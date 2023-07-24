@@ -17,7 +17,7 @@
           <div class= "q-pt-none">É necessário alterar pelo menos um campo para concluir a alteração.</div>
         </q-card-section>
         <q-card-actions align="center">
-          <q-btn label="OK" v-close-popup color="primary"/>
+          <q-btn label="VOLTAR" v-close-popup color="warning"/>
         </q-card-actions>
       </q-card>
     </q-dialog>
