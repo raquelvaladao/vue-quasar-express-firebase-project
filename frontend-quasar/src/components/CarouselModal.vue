@@ -4,10 +4,10 @@
             <q-carousel v-model="slide" transition-prev="scale" transition-next="scale" swipeable animated
                 control-color="white" navigation padding arrows height="300px"
                 class="bg-primary text-white shadow-10 rounded-borders">
-                <q-carousel-slide v-for="(item, index) in detailedCard.extendedIngredients" :key="index" :name="index"
+                <q-carousel-slide v-for="(item, index) in detailedCard.analyzedInstructions[0].steps" :key="index" :name="index"
                     class="column no-wrap flex-center">
                     <div class="q-mt-md text-center">
-                        {{ item.name }}
+                        {{ item.number }} - {{ item.step }}
                     </div>
                 </q-carousel-slide>
             </q-carousel>
