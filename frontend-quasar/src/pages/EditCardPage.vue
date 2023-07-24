@@ -94,8 +94,7 @@ export default defineComponent({
     },
     async editCard (originalCard) {
       try {
-        const response = await ConsultService.editCard(originalCard, this.dataSelected)
-        console.log(response.data)
+        await ConsultService.editCard(this.dataSelected, originalCard)
       } catch (error) {
         console.error(error)
       }
