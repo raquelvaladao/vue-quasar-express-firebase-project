@@ -77,9 +77,9 @@ export default defineComponent({
         this.alert = true
       }
     },
-    async editCard (edited) {
+    async editCard (originalCard) {
       try {
-        const response = await ConsultService.editCard(edited, this.dataSelected)
+        const response = await ConsultService.editCard(originalCard, this.dataSelected)
         console.log(response.data)
       } catch (error) {
         console.error(error)
