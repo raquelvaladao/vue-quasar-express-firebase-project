@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="column">
+    <div class="left-div">
       <q-select v-model="selectedItem1" :options="items" label="Selecione a receita 1" option-value="id"
         option-label="title" @input="onSelectedItem1Change" />
       <div class="q-card-conteiner">
@@ -24,7 +24,7 @@
         </q-card>
       </div>
     </div>
-    <div class="column">
+    <div class="left-div">
       <q-select v-model="selectedItem2" :options="items.filter(item => item !== selectedItem1).map(item => item)"
         label="Selecione a receita 2" option-value="id" option-label="title" @input="selectedItem2" />
       <div class="q-card-conteiner">
@@ -48,7 +48,7 @@
         </q-card>
       </div>
     </div>
-    <div class="column">
+    <div class="center-div">
       <div class="title select flex flex-center">
         <p v-if="selectedItem1 && selectedItem2">
           <span :class="{ 'highlight': this.numItem1 > this.numItem2 }">{{ selectedItem1.title }}</span>
@@ -178,11 +178,24 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.left-div, .right-div {
+  flex-basis: 50%; /* Cada uma das divs laterais ocupará metade da largura */
+  box-sizing: border-box; /* Inclui padding e borda na largura definida acima */
+  padding: 10px;
+}
+
+.center-div {
+  margin: 0 auto; /* Centraliza horizontalmente a div no centro da tela */
+}
+
 .highlight {
   background-color: #ffcccb;
   /* Define a cor de fundo para destacar o lado que é maior */
 }
-
 .column {
   flex: 1;
   /* Faz com que cada coluna ocupe uma proporção igual do espaço disponível */
@@ -253,7 +266,7 @@ export default {
 }
 
 .q-card-conteiner {
-  padding-top: 150px;
+  padding-top: 15px;
 }
 
 .title {

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="justify-content: center; align-items: center; padding: 20px 150px 0 150px">
+  <div class="q-pa-md" style="justify-content: center; align-items: center; padding: 20px 15px 0 15px">
     <q-form class="q-gutter-md" @submit="onSubmit" @reset="onReset" v-if="show">
       <q-input filled v-for="(item, index) in dataSelected" :key="index.toString()"
         :hint="index.toUpperCase()" lazy-rules :rules="[ val => val && val.toString().length > 0 || 'Digite algo!']" v-model="dataSelected[index]" :value="item" />
