@@ -49,10 +49,11 @@
       </div>
     </div>
     <div class="column">
-      <!-- Título fixo com o mesmo tamanho do q-select -->
       <div class="title select">
         <p v-if="selectedItem1 && selectedItem2">
-          {{ selectedItem1.title }} | vs | {{ selectedItem2.title }}
+          <span :class="{ 'highlight': this.numItem1 > this.numItem2 }">{{ selectedItem1.title }}</span>
+          | <q-btn @click="compare">Compare</q-btn> |
+          <span :class="{ 'highlight': this.numItem1 < this.numItem2 }">{{ selectedItem2.title }}</span>
         </p>
         <p v-else>Selecione as receitas</p>
       </div>
@@ -113,7 +114,9 @@ export default {
       items: [],
       selectedItem1: ref(null),
       selectedItem2: ref(null),
-      showComparative: false
+      showComparative: false,
+      numItem1: 0,
+      numItem2: 0
     }
   },
   watch: {
@@ -146,6 +149,28 @@ export default {
     onSelectedItem1Change (selectedItem) {
       console.log(selectedItem)
       this.selectedItem1 = selectedItem
+    },
+    compare () {
+      if (this.selectedItem1.calories > this.selectedItem2.calories) {
+        this.numItem1 += 1
+      } else if (this.selectedItem1.calories < this.selectedItem2.calories) {
+        this.numItem2 += 1
+      }
+      if (this.selectedItem1.protein > this.selectedItem2.protein) {
+        this.numItem1 += 1
+      } else if (this.selectedItem1.protein < this.selectedItem2.protein) {
+        this.numItem2 += 1
+      }
+      if (this.selectedItem1.fat > this.selectedItem2.fat) {
+        this.numItem1 += 1
+      } else if (this.selectedItem1.fat < this.selectedItem2.fat) {
+        this.numItem2 += 1
+      }
+      if (this.selectedItem1.carbs > this.selectedItem2.carbs) {
+        this.numItem1 += 1
+      } else if (this.selectedItem1.carbs < this.selectedItem2.carbs) {
+        this.numItem2 += 1
+      }
     }
   }
 }
