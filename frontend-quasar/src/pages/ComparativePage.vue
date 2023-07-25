@@ -68,33 +68,33 @@
             </p>
             <p class="item-nutrient">
               <b>Proteína:</b>
-              <span :class="{ 'highlight': selectedItem1.protein > selectedItem2.protein }">
+              <span :class="{ 'highlight': Number(selectedItem1.protein.replace('g', '')) > Number(selectedItem2.protein.replace('g', '')) }">
                 {{ selectedItem1.protein }}
               </span>
               |
-              <span :class="{ 'highlight': selectedItem1.protein < selectedItem2.protein }">
+              <span :class="{ 'highlight': Number(selectedItem1.protein.replace('g', '')) < Number(selectedItem2.protein.replace('g', '')) }">
                 {{ selectedItem2.protein }}
               </span>
             </p>
 
             <p class="item-nutrient">
               <b>Gordura:</b>
-              <span :class="{ 'highlight': selectedItem1.fat > selectedItem2.fat }">
+              <span :class="{ 'highlight': Number(selectedItem1.fat.replace('g', '')) > Number(selectedItem2.fat.replace('g', '')) }">
                 {{ selectedItem1.fat }}
               </span>
               |
-              <span :class="{ 'highlight': selectedItem1.fat < selectedItem2.fat }">
+              <span :class="{ 'highlight': Number(selectedItem1.fat.replace('g', '')) < Number(selectedItem2.fat.replace('g', '')) }">
                 {{ selectedItem2.fat }}
               </span>
             </p>
 
             <p class="item-nutrient">
               <b>Carboidratos:</b>
-              <span :class="{ 'highlight': selectedItem1.carbs > selectedItem2.carbs }">
+              <span :class="{ 'highlight': Number(selectedItem1.carbs.replace('g', '')) > Number(selectedItem2.carbs.replace('g', '')) }">
                 {{ selectedItem1.carbs }}
               </span>
               |
-              <span :class="{ 'highlight': selectedItem1.carbs < selectedItem2.carbs }">
+              <span :class="{ 'highlight': Number(selectedItem1.carbs.replace('g', '')) < Number(selectedItem2.carbs.replace('g', '')) }">
                 {{ selectedItem2.carbs }}
               </span>
             </p>
