@@ -62,9 +62,9 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'history', // available values: 'hash', 'history'
       env: {
         API_URL: ctx.dev
-          ? 'http://192.168.1.30:4000/'
+          ? 'http://localhost:4000/'
           : 'https://api.spoonacular.com/',
-        FIREBASE_API_URL: 'http://192.168.1.30:8000/'
+        FIREBASE_API_URL: 'http://localhost:8000/'
       },
       // vueRouterBase,
       // vueDevtools,

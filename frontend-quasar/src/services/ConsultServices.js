@@ -7,6 +7,7 @@ export class ConsultService {
   static favoriteItems = 'all'
   static setOrRemoveFavorite = 'fav'
   static editedRecipe = 'edit'
+  static getEditedRecipe = 'edited'
   static allEditedRecipes = 'alledited'
 
   static async getAllElementsHome () {
@@ -93,9 +94,9 @@ export class ConsultService {
     return displayed
   }
 
-  static getElementById (id) {
-    const element = api.get(this.getItemById + id)
-    const edited = firebaseApi.get(`${this.editedRecipe}/${id}`)
+  static async getElementById (id) {
+    const element = await api.get(this.getItemById + id)
+    const edited = firebaseApi.get(`${this.getEditedRecipe}/${id}`)
     if (edited) {
       element.title = edited.title
       element.calories = edited.calories
