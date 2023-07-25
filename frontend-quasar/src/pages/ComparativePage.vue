@@ -132,6 +132,8 @@ export default {
   },
   methods: {
     checkSelections () {
+      this.numItem1 = 0
+      this.numItem2 = 0
       if (this.selectedItem1 !== null && this.selectedItem2 !== null) {
         this.showComparative = true
       } else {
@@ -147,7 +149,6 @@ export default {
       }
     },
     onSelectedItem1Change (selectedItem) {
-      console.log(selectedItem)
       this.selectedItem1 = selectedItem
     },
     compare () {
@@ -180,11 +181,6 @@ export default {
 .highlight {
   background-color: #ffcccb;
   /* Define a cor de fundo para destacar o lado que é maior */
-}
-
-.container {
-  display: flex;
-  /* Define o contêiner como um flex container */
 }
 
 .column {
