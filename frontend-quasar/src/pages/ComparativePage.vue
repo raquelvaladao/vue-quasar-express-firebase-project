@@ -1,8 +1,6 @@
 <template>
   <div class="container">
     <div class="column">
-    </div>
-    <div class="column">
       <q-select v-model="selectedItem1" :options="items" label="Selecione a receita 1" option-value="id"
         option-label="title" @input="onSelectedItem1Change" />
       <div class="q-card-conteiner">
@@ -25,7 +23,6 @@
           </q-card-section>
         </q-card>
       </div>
-
     </div>
     <div class="column">
       <q-select v-model="selectedItem2" :options="items.filter(item => item !== selectedItem1).map(item => item)"
@@ -49,6 +46,59 @@
             </div>
           </q-card-section>
         </q-card>
+      </div>
+    </div>
+    <div class="column">
+      <!-- Título fixo com o mesmo tamanho do q-select -->
+      <div class="title select">
+        <p v-if="selectedItem1 && selectedItem2">
+          {{ selectedItem1.title }} | vs | {{ selectedItem2.title }}
+        </p>
+        <p v-else>Selecione as receitas</p>
+      </div>
+      <div class="q-card-conteiner">
+        <div class="comparison-container" v-if="selectedItem1 && selectedItem2">
+          <div class="item-nutrition-comp">
+            <p class="item-nutrient">
+              <b>Calorias:</b> <span :class="{ 'highlight': selectedItem1.calories > selectedItem2.calories }">{{
+                selectedItem1.calories }}</span> |<span
+                :class="{ 'highlight': selectedItem1.calories < selectedItem2.calories }">{{ selectedItem2.calories
+                }}</span>
+            </p>
+            <p class="item-nutrient">
+              <b>Proteína:</b>
+              <span :class="{ 'highlight': selectedItem1.protein > selectedItem2.protein }">
+                {{ selectedItem1.protein }}
+              </span>
+              |
+              <span :class="{ 'highlight': selectedItem1.protein < selectedItem2.protein }">
+                {{ selectedItem2.protein }}
+              </span>
+            </p>
+
+            <p class="item-nutrient">
+              <b>Gordura:</b>
+              <span :class="{ 'highlight': selectedItem1.fat > selectedItem2.fat }">
+                {{ selectedItem1.fat }}
+              </span>
+              |
+              <span :class="{ 'highlight': selectedItem1.fat < selectedItem2.fat }">
+                {{ selectedItem2.fat }}
+              </span>
+            </p>
+
+            <p class="item-nutrient">
+              <b>Carboidratos:</b>
+              <span :class="{ 'highlight': selectedItem1.carbs > selectedItem2.carbs }">
+                {{ selectedItem1.carbs }}
+              </span>
+              |
+              <span :class="{ 'highlight': selectedItem1.carbs < selectedItem2.carbs }">
+                {{ selectedItem2.carbs }}
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -102,6 +152,11 @@ export default {
 </script>
 
 <style scoped>
+.highlight {
+  background-color: #ffcccb;
+  /* Define a cor de fundo para destacar o lado que é maior */
+}
+
 .container {
   display: flex;
   /* Define o contêiner como um flex container */
@@ -169,7 +224,8 @@ export default {
   margin-bottom: 5px;
 }
 
-.avatar-container, .item-title {
+.avatar-container,
+.item-title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,4 +233,37 @@ export default {
 
 .q-card-conteiner {
   padding-top: 150px;
-}</style>
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.item-nutrition-comp {
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-nutrient {
+  margin-bottom: 10px;
+}
+
+b {
+  font-weight: bold;
+}
+
+.highlight {
+  color: #ff5733;
+  /* ou qualquer outra cor de destaque que preferir */
+}
+</style>
