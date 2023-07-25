@@ -156,19 +156,19 @@ export default {
       } else if (this.selectedItem1.calories < this.selectedItem2.calories) {
         this.numItem2 += 1
       }
-      if (this.selectedItem1.protein > this.selectedItem2.protein) {
+      if (Number(this.selectedItem1.protein.replace('g', '')) > Number(this.selectedItem2.protein.replace('g', ''))) {
         this.numItem1 += 1
-      } else if (this.selectedItem1.protein < this.selectedItem2.protein) {
+      } else if (Number(this.selectedItem1.protein.replace('g', '')) < Number(this.selectedItem2.protein.replace('g', ''))) {
         this.numItem2 += 1
       }
-      if (this.selectedItem1.fat > this.selectedItem2.fat) {
+      if (Number(this.selectedItem1.fat.replace('g', '')) > Number(this.selectedItem2.fat.replace('g', ''))) {
         this.numItem1 += 1
-      } else if (this.selectedItem1.fat < this.selectedItem2.fat) {
+      } else if (Number(this.selectedItem1.fat.replace('g', '')) < Number(this.selectedItem2.fat.replace('g', ''))) {
         this.numItem2 += 1
       }
-      if (this.selectedItem1.carbs > this.selectedItem2.carbs) {
+      if (Number(this.selectedItem1.carbs.replace('g', '')) > Number(this.selectedItem2.carbs.replace('g', ''))) {
         this.numItem1 += 1
-      } else if (this.selectedItem1.carbs < this.selectedItem2.carbs) {
+      } else if (Number(this.selectedItem1.carbs.replace('g', '')) < Number(this.selectedItem2.carbs.replace('g', ''))) {
         this.numItem2 += 1
       }
     }
