@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="column">
-      <div class="title select">
+      <div class="title select flex flex-center">
         <p v-if="selectedItem1 && selectedItem2">
           <span :class="{ 'highlight': this.numItem1 > this.numItem2 }">{{ selectedItem1.title }}</span>
           | <q-btn @click="compare">Compare</q-btn> |
