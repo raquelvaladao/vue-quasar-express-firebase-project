@@ -24,8 +24,12 @@ This repository provides a simple mock API setup using JSON Server. It allows yo
   npm install -g json-server
 ```
 
-* After the installation is complete, start the JSON Server with the following command:
+* After the installation is complete, start the JSON Server with the following command, within the folder *frontend-quasar/server*:
 
 ```bash
   json-server --watch db.json --port 4000
 ```
+![Alt text](imgs/image.png)
+![Alt text](imgs/prep.jpg)
+![Alt text](imgs/edit.png)
+![Alt text](imgs/cmp.png)
